@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Simulación de identidad</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#eef2f7;color:#172033}
+header{background:#172033;color:#fff;padding:18px;text-align:center}
+.warning{background:#fff3cd;color:#664d03;border-bottom:1px solid #ffecb5;padding:12px;text-align:center;font-weight:bold}
+main{max-width:1000px;margin:35px auto;padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.panel{background:#fff;border-radius:14px;padding:25px;box-shadow:0 5px 20px rgba(0,0,0,.08)}
+h2{margin-top:0}label{display:block;margin-top:15px;margin-bottom:6px;font-weight:bold}
+input{width:100%;padding:12px;border:1px solid #ccd3df;border-radius:8px;font-size:15px}
+button{margin-top:20px;width:100%;padding:13px;border:0;border-radius:8px;background:#315efb;color:#fff;font-size:16px;cursor:pointer}
+.identity-card{position:relative;overflow:hidden;min-height:290px;border-radius:18px;padding:24px;background:linear-gradient(135deg,#dce8ff,#fff);border:3px solid #315efb}
+.identity-card:after{content:"SIMULACIÓN • SIN VALIDEZ";position:absolute;left:-20px;right:-20px;top:115px;transform:rotate(-15deg);text-align:center;font-size:25px;font-weight:900;color:rgba(200,0,0,.18);pointer-events:none}
+.card-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}
+.fake-logo{width:55px;height:55px;border-radius:50%;background:#315efb;color:#fff;display:grid;place-items:center;font-weight:bold}
+.card-content{display:grid;grid-template-columns:100px 1fr;gap:20px}
+.photo{width:100px;height:125px;border-radius:8px;background:#cbd3df;display:grid;place-items:center;color:#596579;font-size:13px;text-align:center}
+.field{margin-bottom:12px}.field small{display:block;color:#647084;font-size:11px;text-transform:uppercase}.field strong{font-size:17px}
+.notice{margin-top:20px;padding:12px;background:#f8d7da;color:#842029;border-radius:8px;font-size:13px;text-align:center;font-weight:bold}
+@media(max-width:750px){main{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><strong>Laboratorio de concienciación digital</strong></header>
+<div class="warning">DEMOSTRACIÓN EDUCATIVA — NO INTRODUZCAS DATOS PERSONALES REALES</div>
+<main>
+<section class="panel">
+<h2>Simulación</h2>
+<p>Introduce información inventada para generar una tarjeta de identidad ficticia.</p>
+<form id="identityForm">
+<label for="name">Nombre ficticio</label>
+<input id="name" type="text" placeholder="Ej.: Alex" required>
+<label for="surname">Apellido ficticio</label>
+<input id="surname" type="text" placeholder="Ej.: Rivera" required>
+<label for="birth">Fecha de nacimiento ficticia</label>
+<input id="birth" type="date" required>
+<label for="number">Identificador de demostración</label>
+<input id="number" type="text" placeholder="DEMO-12345" required>
+<button type="submit">Generar simulación</button>
+</form>
+</section>
+<section class="panel">
+<h2>Resultado</h2>
+<div class="identity-card">
+<div class="card-title">
+<div><strong>IDENTIDAD DE DEMOSTRACIÓN</strong><div>Documento ficticio</div></div>
+<div class="fake-logo">DEMO</div>
+</div>
+<div class="card-content">
+<div class="photo">IMAGEN<br>FICTICIA</div>
+<div>
+<div class="field"><small>Nombre</small><strong id="resultName">Alex</strong></div>
+<div class="field"><small>Apellido</small><strong id="resultSurname">Rivera</strong></div>
+<div class="field"><small>Fecha</small><strong id="resultBirth">2000-01-01</strong></div>
+<div class="field"><small>ID de demostración</small><strong id="resultNumber">DEMO-12345</strong></div>
+</div>
+</div>
+</div>
+<div class="notice">ESTE DISEÑO ES FICTICIO Y NO REPRESENTA NINGÚN DOCUMENTO OFICIAL. NO TIENE VALIDEZ LEGAL.</div>
+</section>
+</main>
+<script>
+document.getElementById("identityForm").addEventListener("submit",function(e){
+e.preventDefault();
+document.getElementById("resultName").textContent=document.getElementById("name").value.trim()||"Alex";
+document.getElementById("resultSurname").textContent=document.getElementById("surname").value.trim()||"Rivera";
+document.getElementById("resultBirth").textContent=document.getElementById("birth").value||"2000-01-01";
+document.getElementById("resultNumber").textContent=document.getElementById("number").value.trim()||"DEMO-12345";
+});
+</script>
+</body>
+</html>
